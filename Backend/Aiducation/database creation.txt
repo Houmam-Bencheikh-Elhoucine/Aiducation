@@ -2,64 +2,104 @@ create database if not exists AIDUCATION_DATA
 -- pictures are stored in the following way "./pictures/profile/<str: imagename>"
 -- in database AIDUCATION_DATA
 
-create table if not exists USERS(
-	idUser integer auto increment, 
-	firstName varchar(255), 
-	lastName varchar(255), 
-	email varchar(1024), 
-	phoneNumber varchar(10), 
-	landlineNumber varchar(10), 
-	password varchar(255), 
-	profilePic varchar(1043) default("./pictures/profile/static.png") unique, 
-	address integer, 
-	primary key(idUser), 
-	froeign key(address) references ADDRESS(idAddress)
+create table if not exists ADDRESSES(
+	idAddress int auto increment, 
+	state varchar(255), 
+	city varchar(255), 
+	description varchar(1024), 
+	primary key(idAddress)
 );
 
-create table if not exists ADDRESSES(
-	idAdderss integer auto increment, state varchar(255), city varchar(255), 
-	description varchar(1024), primary key(idAddress)
+create table if not exists USERS(
+	idUser int auto increment, 
+	firstName varchar(255), 
+	lastName varchar(255) not null, 
+	email varchar(1024) not null, 
+	phoneNumber varchar(10) not null, 
+	landlineNumber varchar(10), 
+	password varchar(255) not null, 
+	profilePic varchar(1043) default("./pictures/profile/static.png") unique, 
+	address int, 
+	primary key(idUser), 
+	foreign key(address) references ADDRESS(idAddress)
+);
+
+create table if not exists ADMINISTRATORS(
+	idAdmin int,
+	primary key(idAdmin),
+	foreign key (idAdmin) references USERS(idUser)
 );
 
 create table if not exists MODULES(
-	idModule varchar(255), nomModule varchar(255), primary key(idModule)
+	idModule varchar(255) auto increment, 
+	nomModule varchar(255) not null, 
+	primary key(idModule)
 );
 
--- photo path is stored in the following path "./pictures/post/<str: imagename>"
-create table if not exists PHOTOS(
-	idPhoto integer auto increment, 
-	path varchar(1024) unique, 
-	priority integer,
-	announcement integer,
-	primary key(idPhoto),
-	foreign key(annoncement) references ANNOUNCEMENT(idAnnouncement)
+create table if not exists userPREFEREmodule(
+	user int,
+	module int,
+	primary key (user, module),
+	foreign key (user) references USERS(idUser),
+	foreign key (module) references MODULES(idModule)
 );
 
 create table if not exists CATEGORIES(
-	idCategory integer auto increment,
+	idCategory int auto increment,
 	cycle varchar(100), 
 	level varchar(100)
 );
 
-create table if not exists ANNOUNCEMENT(
-	idAnnouncement integer auto increment,
+create table if not exists ANNOUNCEMENTS(
+	idAnnouncement int auto increment,
 	description varchar(2048);
-	price integer check(price>0),
-	
-	primary key(iAnnouncement)
+	price int check(price>0) not null,
+	address int,
+	owner int,
+	module int,
+	primary key(iAnnouncement),
+	foreign key (address) references ADDRESSES(idAddress),
+	foreign key (owner) references USERS(idUser),
+	foreign key (module) references MODULES(idModule)
+);
+
+create table if not exists announcementCONCERScategory(
+	category int,
+	announcement int,
+	primary key(category, announcement),
+	foreign key(category) references CATEGORIES(idCategory),
+	foreign key(announcement) references ANNOUNCEMENTS(idAnnouncement)
+);
+
+-- photo path is stored in the following path "./pictures/post/<str: imagename>"
+create table if not exists PHOTOS(
+	idPhoto int auto increment, 
+	path varchar(1024) unique, 
+	priority int check(priority >= 0),
+	announcement int,
+	primary key(idPhoto),
+	foreign key(announcement) references ANNOUNCEMENTS(idAnnouncement)
+);
+
+create table if not exists userLIKESannouncement(
+	user int,
+	announcement int,
+	primary key(user, announcement),
+	foreign key(user) references USERS(idUser),
+	foreign key(announcement) references ANNOUNCEMENTS(idAnnouncement)
 );
 
 create table if not exists MESSAGES(
-	message varchar(255),
-	state integer check(state in (-1, 1)),
+	message varchar(255) not null,
+	state int check(state in (-1, 0, 1)) default 0, 
 	reason varchar(255),
 	dateSent datetime,
 	dateResponse datetime, 
-	sender integer, 
-	receiver integer, 
-	announcement integer, 
-	primary key(sender, receievr, announcement),
-	foreign key(sender) references USER(idUser), 
-	foreign key(receiver) references USER(idUser), 
-	foreign key(announcement) references USER(idAnnouncement)
+	sender int, 
+	receiver int, 
+	announcement int, 
+	primary key(sender, receiver, announcement),
+	foreign key(sender) references USERS(idUser), 
+	foreign key(receiver) references USERS(idUser), 
+	foreign key(announcement) references ANNOUNCEMENTS(idAnnouncement)
 );
