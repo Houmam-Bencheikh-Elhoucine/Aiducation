@@ -1,5 +1,5 @@
 import { Stack, Box , Typography,styled,Button} from "@mui/material";
-import { OrangeButton } from "../App";
+import { OrangeButton } from "./Home";
 
 const BlueButton = styled(Button)({
 

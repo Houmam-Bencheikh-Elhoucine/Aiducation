@@ -1,20 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import NavBar from './components/NavBar';
-import About from './components/About';
-import JoinUs from './components/JoinUs'; 
-import ResponsiveDrawer from './components/page2/ResponsiveDrawer';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/*<NavBar/>
-    <App />
-    <About />
-    <JoinUs />*/}
 
-  <ResponsiveDrawer/>
+  <App />
     
 
 

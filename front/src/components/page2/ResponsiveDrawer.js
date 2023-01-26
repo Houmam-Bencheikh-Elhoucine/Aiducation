@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import PropTypes from 'prop-types';
 import CssBaseline from '@mui/material/CssBaseline';
-import { alpha ,styled} from '@mui/material';
+import { alpha ,styled, useMediaQuery} from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import HomeIcon from '@mui/icons-material/Home';
 import List from '@mui/material/List';
@@ -19,6 +19,8 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import CardsPub from './CardsPub';
+import CardOffers from './CardOffers';
+
 
 
 const drawerWidth = 240;
@@ -111,9 +113,9 @@ const drawerWidth = 240;
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
-
+  const isMobile = useMediaQuery('(max-width:968px)');
   return (
-    <Box sx={{ display: 'flex',backgroundColor: `#F0EFFD`,height: '100vh'
+    <Box sx={{ display: 'flex',backgroundColor: `#F0EFFD`,height: '100%'
 
 
                 }}>
@@ -206,13 +208,29 @@ const drawerWidth = 240;
 
           <CardsPub />
           
+          <CardsPub />
+          <CardsPub />
+          <CardsPub />
+          
 
 
-      
-      
-      
       
       </Box>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, }}
+      >
+        <Toolbar />
+
+     
+      
+      {!isMobile &&
+      
+      <CardOffers />}
+      
+        
+      </Box>
+
     </Box>
   );
 }
