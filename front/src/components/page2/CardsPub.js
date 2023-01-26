@@ -13,6 +13,7 @@ import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlin
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import InfoIcon from '@mui/icons-material/Info';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import pubPhoto from '../../assets/publication.png';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -79,7 +80,7 @@ export default function CardsPub() {
       <CardMedia
         component="img"
         height="250"
-        image="https://www.w3schools.com/images/lamp.jpg"
+        image={pubPhoto}
         alt="publication"
       />
       

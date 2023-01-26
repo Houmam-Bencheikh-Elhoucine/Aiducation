@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
-import PropTypes from 'prop-types';
 import CssBaseline from '@mui/material/CssBaseline';
 import { alpha ,styled, useMediaQuery} from '@mui/material';
 import Drawer from '@mui/material/Drawer';
@@ -18,14 +17,13 @@ import ListItemText from '@mui/material/ListItemText';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import CardsPub from './CardsPub';
-import CardOffers from './CardOffers';
+import SavedCard from './SavedCard';
 
 
 
 const drawerWidth = 240;
 
- export default function ResponsiveDrawer(props) {
+ export default function Page2(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -114,6 +112,10 @@ const drawerWidth = 240;
 
   const container = window !== undefined ? () => window().document.body : undefined;
   const isMobile = useMediaQuery('(max-width:968px)');
+
+
+
+
   return (
     <Box sx={{ display: 'flex',backgroundColor: `#F0EFFD`,height: '100%'
 
@@ -205,43 +207,20 @@ const drawerWidth = 240;
      {/**   cards*/}
       
       
-
-          <CardsPub />
-          
-          <CardsPub />
-          <CardsPub />
-          <CardsPub />
+          <SavedCard/>
+            <SavedCard/>
+            <SavedCard/>
+            <SavedCard/>
+       
           
 
 
       
       </Box>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, }}
-      >
-        <Toolbar />
-
-     
-      
-      {!isMobile &&
-      
-      <CardOffers />}
-      
-        
-      </Box>
-
     </Box>
   );
 }
 
-ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
 
 
 
