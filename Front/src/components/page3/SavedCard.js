@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import pubPhoto from '../../assets/publication.png';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+import { dividerClasses, styled, useMediaQuery} from '@mui/material';
 
 const OrangeButton = styled(Button)({
 
@@ -26,18 +26,20 @@ const OrangeButton = styled(Button)({
     }
   })
 
-
 export default function SavedCard() {
-  
+    const isMobile = useMediaQuery('(max-width:968px)');
 
   return (
+    <div>
+       {!isMobile ?  
     <Card sx={{ maxWidth: 600  , display: 'flex', ml:'15%',mb:3, }}>
+      
       <CardMedia
         component="img"
         sx={{ width: 200 , borderRadius : "18px", mb: 2,mt:2,ml:2,mr:2, p:1 }}
         image={pubPhoto}
       />
-
+                  
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
         <Box sx={{display : 'flex', flexDirection:'row'}} >         
@@ -56,7 +58,6 @@ export default function SavedCard() {
             <Box sx={{
                 backgroundColor : "#F0EFFD",
                 width : "90%", 
-                height : 110,
                 borderRadius : "18px",
                 mt : 1,
             }}>
@@ -78,5 +79,56 @@ export default function SavedCard() {
       </Box>
       
     </Card>
+    :
+    <Card sx={{ maxWidth: 600  , display: 'flex',mb:2, }}>
+      
+      <CardMedia
+        component="img"
+        sx={{ width: 200 , borderRadius : "18px", mb: 2,mt:2,ml:2,mr:2, p:1 }}
+        image={pubPhoto}
+      />
+                  
+      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <CardContent sx={{ flex: '1 0 auto' }}>
+        <Box sx={{display : 'flex', flexDirection:'row'}} >         
+          <Typography component="div" variant="h5">
+            Azouaou faicel 
+          </Typography>
+        <OrangeButton>
+            More details
+        </OrangeButton>
+
+          </Box>
+          <Typography variant="subtitle1" color="text.secondary" component="div">
+          Saved on 31/12/2022
+          </Typography>
+
+            <Box sx={{
+                backgroundColor : "#F0EFFD",
+                width : "100%", 
+                borderRadius : "18px",
+                mt : 1,
+            }}>
+          <Typography variant="body2"
+        sx={{
+            color : "#00008C",
+            fontWeight : "bold",
+            fontSize : 16,
+            ml : 2,
+            pt : 1,
+        }}>
+          Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna 
+        </Typography>
+        </Box>
+        </CardContent>
+        
+      </Box>
+      
+    </Card>
+
+} 
+</div>
   );
 }
