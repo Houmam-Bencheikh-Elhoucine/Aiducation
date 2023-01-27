@@ -6,23 +6,88 @@ import Card from '@mui/material/Card';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/material/styles';
 
-const currencies = [
+
+const TextFieldOrange = styled(TextField)({
+  backgroundColor: '#FF7832',
+  opacity: 0.5,
+  borderRadius: 3,
+  marginBottom: 5,
+  
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'white',
+    },
+    '&:hover fieldset': {
+      borderColor: 'white',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'white',
+    },  
+    color: '#00008C',
+    fontWeight: 'bold',
+  },
+  '& .MuiInputLabel-root': {
+    color: '#00008C',
+    fontWeight: 'bold',
+  },
+});
+
+
+const OrangeButton = styled(Button)({
+
+  backgroundColor: '#FF7832',
+  color: 'white',
+  opacity: '0.9',
+  borderRadius: '6px',
+  width: '260px',
+  marginBottom : '5%',
+  marginLeft: '20%',
+  '&:hover': {  
+    opacity: '0.8',
+    backgroundColor: '#FF7832',
+    color: 'white',
+    
+  }
+})
+
+
+const category = [
   {
-    value: 'USD',
-    label: '$',
+    value: 'category',
+    label: 'category',
   },
   {
-    value: 'EUR',
-    label: '€',
+    value: 'category',
+    label: 'category',
   },
   {
-    value: 'BTC',
-    label: '฿',
+    value: 'category',
+    label: 'category',
   },
   {
-    value: 'JPY',
-    label: '¥',
+    value: 'category',
+    label: 'category',
+  },
+];
+
+const theme = [
+  {
+    value: 'theme',
+    label: 'theme',
+  },
+  {
+    value: 'theme',
+    label: 'theme',
+  },
+  {
+    value: 'theme',
+    label: 'theme',
+  },
+  {
+    value: 'theme',
+    label: 'theme',
   },
 ];
 
@@ -40,57 +105,83 @@ export default function CardPost() {
         mt : 2,
       }}
       > <Stack>
-           <TextField
+           <TextFieldOrange
           id="outlined-multiline-static"
-          label="Multiline"
+          label="Description"
           multiline
           rows={4}
-          defaultValue="Default Value"
+          defaultValue=" Add the description of the post"
+          sx={{width: '80%',marginLeft:"10%",}}
         />
-        <Stack direction="row" spacing={10}>
-        <TextField
+        <Stack direction="row" justifyContent="space-around" alignItems="center" >
+        <TextFieldOrange
           id="outlined-select-currency"
           select
-          label="Select"
-          defaultValue="EUR"
-          
+          label="category"
+          defaultValue="category"
+          sx={{
+            width: 200,
+          }}
         >
-          {currencies.map((option) => (
+          {category.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
-        </TextField>
-        <TextField
+        </TextFieldOrange>
+        <TextFieldOrange
           id="outlined-select-currency"
           select
-          label="Select"
-          defaultValue="EUR"
-          
+          label="theme"
+          defaultValue="theme"
+          sx={{
+            width: 200,
+          }}
         >
-          {currencies.map((option) => (
+          {theme.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
-        </TextField>
+        </TextFieldOrange>
         </Stack>
-        <Stack direction="row" spacing={10}>
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        <Stack direction="row" justifyContent="space-around" alignItems="center" >
+        <TextFieldOrange id="outlined-basic" label="Wilaya" variant="outlined" sx={{width: 200,}} />
+        <TextFieldOrange id="outlined-basic" label="Commune" variant="outlined" sx={{width: 200,}}/>
         </Stack>
-        <Stack direction="row" spacing={10}>
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        <Stack direction="row" justifyContent="space-around" alignItems="center" >
+        <TextFieldOrange id="outlined-basic" label="Prize" variant="outlined" sx={{width: 200,}}/>
+        <TextFieldOrange id="outlined-basic" label="Modality" variant="outlined" sx={{width: 200,}}/>
         </Stack>
-        <TextField
+        <TextFieldOrange
           id="outlined-multiline-static"
-          label="Multiline"
+          label="KeyWords"
           multiline
           rows={4}
-          defaultValue="Default Value"
+          defaultValue=" Add the KeyWords of the post"
+          sx={{width: '80%',marginLeft:"10%",}}
         />
-        <Button id="outlined-basic" label="Outlined" variant="outlined" ><input type="file" hidden/> Upload File </Button>
+        <label style={{
+          width: '80%',
+          marginLeft:"10%",
+          marginBottom: 5,
+          backgroundColor: '#FF7832',
+          opacity: 0.5,
+          borderRadius: 3,
+          color: '#00008C',
+          fontWeight: 'bold',
+          padding: 10,
+          cursor: 'pointer',
+          
+
+
+
+        }}>
+        <input type="file" hidden />  
+        Add photo
+        </label>
+
+        <OrangeButton variant="contained" sx={{width: '40%',marginLeft:"30%",}}>Post</OrangeButton>
         </Stack>
 
        </CardContent> 
