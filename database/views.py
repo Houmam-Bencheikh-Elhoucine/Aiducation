@@ -55,8 +55,8 @@ def users_list(request):
 
 @api_view(['GET'])
 def user_detail(request, pk):
-    users = Users.objects.all(pk)
-    serializer = UsersSerializer(users, many=False)
+    user = Users.objects.all(pk)
+    serializer = UsersSerializer(user, many=False)
     return JsonResponse(serializer.data)
 
 @api_view(['POST'])
