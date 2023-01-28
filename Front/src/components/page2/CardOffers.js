@@ -13,7 +13,7 @@ const OrangeButton = styled(Button)({
   borderRadius: '6px',
   width: '260px',
   marginBottom : '5%',
-  marginLeft: '20%',
+  marginLeft: '22%',
   '&:hover': {  
     opacity: '0.8',
     backgroundColor: '#FF7832',
@@ -28,7 +28,7 @@ export default function CardOffers() {
   return (
   <div>
         <OrangeButton>Create announce</OrangeButton>
-        <Card sx={{ maxWidth: 500, marginBottom:"3%" }}>
+        <Card sx={{ maxWidth: 400, marginBottom:"3%",marginLeft:"10%" }}>
        
       <ContentOffersP />
       

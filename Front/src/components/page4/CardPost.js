@@ -13,7 +13,7 @@ const TextFieldOrange = styled(TextField)({
   backgroundColor: '#FF7832',
   opacity: 0.5,
   borderRadius: 3,
-  marginBottom: 5,
+  marginBottom: 10,
   
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
@@ -31,6 +31,7 @@ const TextFieldOrange = styled(TextField)({
   '& .MuiInputLabel-root': {
     color: '#00008C',
     fontWeight: 'bold',
+    fontSize: '1.2rem',
   },
 });
 
@@ -105,6 +106,14 @@ export default function CardPost() {
         mt : 2,
       }}
       > <Stack>
+        <TextFieldOrange
+          id="outlined-multiline-static"
+          label="Title"
+          multiline
+          rows={4}
+          defaultValue=" Add the title of the post"
+          sx={{width: '80%',marginLeft:"10%",}}
+        />
            <TextFieldOrange
           id="outlined-multiline-static"
           label="Description"
@@ -117,7 +126,7 @@ export default function CardPost() {
         <TextFieldOrange
           id="outlined-select-currency"
           select
-          label="category"
+         
           defaultValue="category"
           sx={{
             width: 200,
@@ -132,7 +141,7 @@ export default function CardPost() {
         <TextFieldOrange
           id="outlined-select-currency"
           select
-          label="theme"
+          
           defaultValue="theme"
           sx={{
             width: 200,
@@ -153,14 +162,6 @@ export default function CardPost() {
         <TextFieldOrange id="outlined-basic" label="Prize" variant="outlined" sx={{width: 200,}}/>
         <TextFieldOrange id="outlined-basic" label="Modality" variant="outlined" sx={{width: 200,}}/>
         </Stack>
-        <TextFieldOrange
-          id="outlined-multiline-static"
-          label="KeyWords"
-          multiline
-          rows={4}
-          defaultValue=" Add the KeyWords of the post"
-          sx={{width: '80%',marginLeft:"10%",}}
-        />
         <label style={{
           width: '80%',
           marginLeft:"10%",

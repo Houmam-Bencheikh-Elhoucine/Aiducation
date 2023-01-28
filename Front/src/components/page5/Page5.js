@@ -17,7 +17,11 @@ import ListItemText from '@mui/material/ListItemText';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import CardPost from './CardPost';
+import CardProfile from './CardProfile';
+import CardStats from './CardStats';
+import SavedCard from './SavedCard';
+
+
 
 
 
@@ -117,7 +121,7 @@ const drawerWidth = 240;
 
 
   return (
-    <Box sx={{ display: 'flex',backgroundColor: `#F0EFFD`,height: '100vh'
+    <Box sx={{ display: 'flex',backgroundColor: `#F0EFFD`,height: '100%'
 
 
                 }}>
@@ -207,14 +211,35 @@ const drawerWidth = 240;
      {/**   cards*/}
       
       
+        <CardProfile />
+        <SavedCard/>
+        <SavedCard/>
+      
           
-            <CardPost/>
             
             
 
 
       
       </Box>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - 4*${drawerWidth}px)` }, }}
+      >
+        <Toolbar />
+
+     {/**   cards*/}
+      
+      {!isMobile && <CardStats/>}
+          
+           
+            
+            
+
+
+      
+      </Box>
+      
     </Box>
   );
 }
