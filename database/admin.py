@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Categories,Users,Announcements,Modules
+from .models import Users,Announcements, Messages
 
-admin.site.register(Categories)
+
 admin.site.register(Users)
 admin.site.register(Announcements)
-admin.site.register(Modules)
+admin.site.register(Messages)

@@ -1,73 +1,81 @@
 from django.db import models
+import base64
+from cpkmodel import CPkModel
 
 # Create your models here.
 
-
-class Addresses(models.Model):
-    idAddress = models.AutoField(primary_key=True)
-    state = models.CharField(max_length=100, default="")    #NA stands for non applicable
-    city = models.CharField(max_length=100, default="")
-    description = models.CharField(max_length=1024, default="")
 
 
 class Users(models.Model):
     idUser = models.AutoField(primary_key = True)
     firstName = models.CharField (max_length=255, default="")
     lastName = models.CharField(max_length=255, default="")
-    email = models.CharField(max_length=255, default="")
+    email = models.EmailField(max_length=255)
     phoneNumber = models.CharField(max_length=20, default="")
-    landLineNumber = models.CharField(max_length=20, default="")
+    landLineNumber = models.CharField(max_length=20, default="", null=True)
     password = models.CharField(max_length=255, default="")
-    address = models.ForeignKey(Addresses, on_delete=models.CASCADE)
+    address = models.CharField(max_length=125, default="")
     profilePicture = models.ImageField(upload_to="database/images" , default="database/images/default.png")
 
-
-class Modules(models.Model):
-    idModule = models.CharField(max_length=50, primary_key=True)
-    nomModule = models.CharField(max_length=100, default="")
+    def __str__(self):
+        return self.firstName, self.lastName, self.profilePicture
 
 
 class Announcements(models.Model):
     idAnnouncement = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=255, default="")
     description = models.CharField(max_length=700, default="")
     price = models.IntegerField(default=0)
-    location = models.ForeignKey(Addresses, on_delete= models.CASCADE)
-    user = models.OneToOneField(Users, on_delete= models.CASCADE)
-    module = models.OneToOneField(Modules, on_delete=models.CASCADE)
+    location = models.CharField(max_length=125, default="")
+    user = models.ForeignKey(Users, on_delete= models.CASCADE)
+    module = models.CharField(max_length=125, default="")
+    category = models.CharField(max_length=125, default="")
+
+    def __str__(self):
+        return self.title, str(self.module)+''+ str(self.category)
 
 
-class Categories(models.Model):
-    idCategory = models.AutoField(primary_key=True)
-    cycle = models.CharField(max_length=10, default='')
-    level = models.IntegerField( default=0)
-    #dont forget to insert default categories
 
 
-class Conserner(models.Model):
-    idCategory = models.OneToOneField(Categories, on_delete=models.CASCADE)
-    idAnnouncement = models.OneToOneField(Announcements, on_delete=models.CASCADE, primary_key=True)
 
 
 class Favoriser(models.Model):
-    idUser = models.OneToOneField(Users, on_delete=models.CASCADE)
-    idAnnouncement = models.OneToOneField(Announcements, on_delete=models.CASCADE, primary_key=True)
+    idFavoriser = models.AutoField(primary_key=True)
+    idUser = models.ForeignKey(Users, on_delete=models.CASCADE)
+    idAnnouncement = models.ForeignKey(Announcements, on_delete=models.CASCADE)
+    
+    class Meta:
+        unique_together = ['idUser', 'idAnnouncement']
+
 
 
 class Messages(models.Model):
-    message = models.CharField(max_length=255, default="")
-    state = models.IntegerField(default="")
+    idMessage = models.AutoField(primary_key=True)
+    STATE_CHOICES = [
+        (-1, 'Refusé(e)'),
+        (0, 'En attente'),
+        (1, 'Accepté(e)')
+    ]
+    state = models.IntegerField(default=0, choices=STATE_CHOICES)
     reason = models.CharField(max_length=255, default="")
-    dateSent = models.DateTimeField(default="")
-    dateResponse = models.DateTimeField(default="")
-    sender = models.OneToOneField(Users, on_delete=models.CASCADE)
-    announcement = models.OneToOneField(Announcements, on_delete=models.CASCADE, primary_key=True)
+    dateSent = models.DateTimeField(auto_now_add=True)
+    dateResponse = models.DateTimeField(null=True)
+    sender = models.ForeignKey(Users, on_delete=models.CASCADE)
+    announcement = models.ForeignKey(Announcements, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.idMessage
 
 class Photos(models.Model):
     idPhoto = models.AutoField(primary_key=True)
     photo = models.ImageField(upload_to="database/images", default="database/images/default.png")
-    priority = models.IntegerField(default="")
-    announcement = models.ForeignKey(Announcements, on_delete=models.CASCADE)
+    priority = models.IntegerField(default=0)
+    announcement = models.ForeignKey(Announcements, on_delete=models.CASCADE, related_name='announcement_photo')
 
+    def __str__(self):
+        with open(self.photo, "rb") as image_file:
+            image_data = base64.b64encode(image_file.read()).decode('utf-8')
+
+        return image_data
 
 

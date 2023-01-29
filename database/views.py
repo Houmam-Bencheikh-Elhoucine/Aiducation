@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from .models import Announcements
+from .models import Announcements, Users
+from .serializers import UsersSerializer
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from  .serializers import AnnouncementSerializer
 # Create your views here.
+
+
 @api_view(['GET', 'POST'])
 def announcement_list(request):
     if request.method == 'GET':
@@ -42,4 +45,41 @@ def announcement_detail(request, pk):
     elif request.method == 'DELETE':
         announcements.delete()
         return HttpResponse(status = status.HTTP_204_NO_CONTENT)
+
+#Users CRUD Functions
+@api_view(['GET'])
+def users_list(request):
+    users = Users.objects.all()
+    serializer = UsersSerializer(users, many=True)
+    return JsonResponse(serializer.data)
+
+@api_view(['GET'])
+def user_detail(request, pk):
+    user = Users.objects.all(pk)
+    serializer = UsersSerializer(user, many=False)
+    return JsonResponse(serializer.data)
+
+@api_view(['POST'])
+def user_create(request):
+    serializer = UsersSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    return JsonResponse(serializer.data)
+
+@api_view(['POST'])
+def user_update(request, pk):
+    user = Users.objects.all(pk)
+    serializer = UsersSerializer(instance=user, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    return JsonResponse(serializer.data)
+
+@api_view(['DELETE'])
+def user_delete(request, pk):
+    user = Users.objects.get(pk)
+    user.delete()
+    return JsonResponse('Deleted')
+
 
