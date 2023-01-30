@@ -1,0 +1,10 @@
+
+@font-face {
+    font-family: 'Poppins';
+    src: local('Poppins'), url(./assets/Poppins-Bold.ttf) format('truetype');
+  }
+
+body,html{
+    font-family: 'Poppins', sans-serif;
+                                                
+}

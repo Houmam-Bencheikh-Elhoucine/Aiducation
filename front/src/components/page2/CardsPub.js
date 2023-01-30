@@ -34,7 +34,7 @@ export default function CardsPub() {
   };
 
   return (
-    <Card sx={{ maxWidth: 430, marginBottom:"3%", marginLeft:"10%" }}>
+    <Card sx={{ maxWidth: 500, marginBottom:"3%", marginLeft:"10%" }}>
       <CardHeader
       sx={{ color: "#00008C" }}
         avatar={
