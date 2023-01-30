@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>page3/Page3.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#About">About</a></li><li><a href="global.html#CardOffers">CardOffers</a></li><li><a href="global.html#CardProfile">CardProfile</a></li><li><a href="global.html#CardsPub">CardsPub</a></li><li><a href="global.html#ContentOffersP">ContentOffersP</a></li><li><a href="global.html#Cours">Cours</a></li><li><a href="global.html#JoinUs">JoinUs</a></li><li><a href="global.html#NavBar">NavBar</a></li><li><a href="global.html#Page2">Page2</a></li><li><a href="global.html#Page6">Page6</a></li><li><a href="global.html#SavedCard">SavedCard</a></li><li><a href="global.html#home">home</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">page3/Page3.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import MenuIcon from '@mui/icons-material/Menu';
+import CssBaseline from '@mui/material/CssBaseline';
+import { alpha ,styled, useMediaQuery} from '@mui/material';
+import Drawer from '@mui/material/Drawer';
+import HomeIcon from '@mui/icons-material/Home';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import SavedCard from './SavedCard';
+
+
+
+const drawerWidth = 240;
+
+/**
+ * 
+ * @param {*} props 
+ * @function Page2
+ * @description this function build a page layout . By using some CSS-in-JS techniques
+ *  with Styled Components, Emotion, and Material-UI components to style the page.
+
+The layout consists of:
+
+AppBar component that acts as a header bar with a search bar and a menu button
+Drawer component that acts as a side menu with items: 'Home', 'Favorite', 'Profile', 'Messages'
+Main content area that changes based on the user's interaction with the menu items.
+ */
+
+ export default function Page2(props) {
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const styledIcon = styled(SearchIcon)(({ theme }) => ({
+    
+  }));
+
+  const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&amp;:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+    },
+  }));
+  
+  const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }));
+  
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: '#00008C',
+    backgroundColor: 'white',
+    border: '3px solid rgba(0, 0, 140, 0.37)',
+    borderRadius: '18px',
+    '&amp; .MuiInputBase-input': {
+      paddingLeft: `calc(1em )`,
+      
+    },
+  }));
+
+
+
+
+  const drawer = (
+    &lt;div>
+      &lt;Toolbar 
+        sx={{
+          backgroundColor: ' #00008CE0'
+        }}
+      />
+      &lt;Typography>
+        {/**AIDUCATION */}
+      &lt;/Typography>
+      
+      &lt;List 
+        sx={{
+          color: `white`,
+          backgroundColor: ' #00008CE0',
+          height: '91.4vh'
+          
+        }}
+      >
+        {['Home', 'Favorite', 'Profile', 'Messages'].map((text) => (
+          &lt;ListItem key={text} disablePadding>
+            &lt;ListItemButton>
+              &lt;ListItemIcon>
+                 &lt;HomeIcon /> 
+                 &lt;BookmarkIcon />
+                
+              &lt;/ListItemIcon>
+              &lt;ListItemText primary={text} />
+            &lt;/ListItemButton>
+          &lt;/ListItem>
+        ))}
+      &lt;/List>
+      
+   
+    &lt;/div>
+  );
+
+  const container = window !== undefined ? () => window().document.body : undefined;
+  const isMobile = useMediaQuery('(max-width:968px)');
+
+
+
+
+  return (
+    &lt;Box sx={{ display: 'flex',backgroundColor: `#F0EFFD`,height: '100%'
+
+
+                }}>
+      &lt;CssBaseline />
+      &lt;AppBar
+        position="fixed"
+        sx={{
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` },
+        }}
+      >
+        &lt;Toolbar
+          sx={{
+            backgroundColor: `#F0EFFD`,
+            display: 'flex',
+            alignItems: 'center',
+            
+          }}
+          >
+
+          &lt;Search>
+            &lt;SearchIconWrapper>
+              &lt;styledIcon />
+            &lt;/SearchIconWrapper>
+            &lt;StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          &lt;/Search>
+
+
+
+          &lt;IconButton
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            &lt;MenuIcon 
+              sx={{ color:"#00008C"}}
+              />
+          &lt;/IconButton>
+          
+          
+        &lt;/Toolbar>
+      &lt;/AppBar>
+      &lt;Box
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
+        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        &lt;Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '&amp; .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+        >
+          {drawer}
+        &lt;/Drawer>
+        &lt;Drawer
+          variant="permanent"
+          sx={{
+            
+
+            display: { xs: 'none', sm: 'block' },
+            '&amp; .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+          open
+        >
+          {drawer}
+        &lt;/Drawer>
+      &lt;/Box>
+      &lt;Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, }}
+      >
+        &lt;Toolbar />
+
+     {/**   cards*/}
+      
+      
+          &lt;SavedCard/>
+            &lt;SavedCard/>
+            &lt;SavedCard/>
+            &lt;SavedCard/>
+       
+          
+
+
+      
+      &lt;/Box>
+    &lt;/Box>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Sun Jan 29 2023 21:30:38 GMT+0100 (Central European Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
