@@ -5,22 +5,23 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
-import PropTypes from 'prop-types';
 import CssBaseline from '@mui/material/CssBaseline';
 import { alpha ,styled, useMediaQuery} from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import HomeIcon from '@mui/icons-material/Home';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Offers from './Offers'
 import Cours from './Cours'
 import Prof from './Prof'
+import Stack from '@mui/material/Stack';
+import PersonIcon from '@mui/icons-material/Person';
+import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
@@ -95,18 +96,38 @@ const drawerWidth = 240;
           
         }}
       >
-        {['Home', 'Favorite', 'Profile', 'Messages'].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                 <HomeIcon /> 
-                 <BookmarkIcon />
-                
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <Stack direction='row' justifyContent='start' alignItems='center' mb={3} mt={6} >
+        <ListItemButton>
+          <HomeIcon/>
+          <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
+            Accueil
+          </Typography>
+          </ListItemButton>
+          </Stack>
+          <Stack direction='row' justifyContent='start' alignItems='center' mb={3}>
+          <ListItemButton>
+          <BookmarkIcon />
+          <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
+            Favoris
+          </Typography>
+          </ListItemButton>
+          </Stack>
+          <Stack direction='row' justifyContent='start' alignItems='center' mb={3} >
+          <ListItemButton>
+          <PersonIcon/>
+          <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
+            Profil
+          </Typography>
+          </ListItemButton>
+          </Stack>
+          <Stack direction='row' justifyContent='start' alignItems='center' mb={3}>
+          <ListItemButton>
+          <SendIcon/>
+          <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
+            Messages
+          </Typography>
+          </ListItemButton>
+          </Stack>
       </List>
       
    
@@ -159,7 +180,20 @@ const drawerWidth = 240;
               sx={{ color:"#00008C"}}
               />
           </IconButton>
+          <Button sx={{
+            ml: 'auto',
+          }} >
+          <Typography sx={{
+            fontFamily: 'Poppins',
+            fontSize: '100%',
+            color: '#00008C',
+            fontWeight: 'bold',
+          }}  mr={1}>
+          Déconnecter
           
+          </Typography>
+          <LogoutIcon sx={{color:'#00008C'}}/>
+          </Button>
           
         </Toolbar>
       </AppBar>

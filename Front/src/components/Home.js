@@ -33,16 +33,16 @@ export default function home() {
         }  />
         
         <Stack>
-        <Typography variant="p" component="div" sx={{  color: 'white',fontSize:"300%" ,  position: 'absolute', top: '40%',fontFamily: 'Poppins' , left: '50%', transform: 'translate(-50%, -50%)'}}>
-              Ready to level up 
-              your grades ?   
+        <Typography  component="div" sx={{  color: 'white',minWidth:"400px",  fontSize:"200%" ,  position: 'absolute', top: '40%',fontFamily: 'Poppins' , marginLeft: '50%', transform: 'translate(-50%, -50%)'}}>
+        Prêt à améliorer       
+       vos notes?
           </Typography>
-        <Typography variant="h4" component="div" sx={{  color: 'white', position: 'absolute', top: '60%', left: '50%',fontFamily: 'Poppins', transform: 'translate(-50%, -50%)'}}>
-            don’t waste more time looking for where to study , do it 
-                 with ease here in Aiducation
+        <Typography  component="div" sx={{  color: 'white',minWidth:"400px",fontSize:"100%", position: 'absolute', top: '60%', left: '50%',fontFamily: 'Poppins', transform: 'translate(-50%, -50%)'}}>
+        ne perdez plus de temps à chercher où étudier,
+           faites-le facilement ici à Aiducation
           </Typography>
-          <OrangeButton Button sx={{  position: 'absolute', top: '80%', left: '50%', transform: 'translate(-50%, -50%)'}}>
-            Get Started
+          <OrangeButton Button sx={{  position: 'absolute', top: '80%', left: '50%', transform: 'translate(-50%, -50%)',fontFamily: 'Poppins'}}>
+          Commencer
           </OrangeButton >
           </Stack>
         

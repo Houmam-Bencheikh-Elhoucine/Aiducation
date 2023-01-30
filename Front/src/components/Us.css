@@ -1,0 +1,18 @@
+.swiper-container {
+  width: 800px;
+  height: 200px;
+
+} 
+
+.swiper-slide {
+ background-color: purple;
+
+}
+
+.blue {
+background-color: blue;
+}
+
+.red {
+background-color: red;
+}

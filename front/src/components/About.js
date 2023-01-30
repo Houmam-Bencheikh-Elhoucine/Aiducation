@@ -12,14 +12,14 @@ export default function About() {
         }} >
         <Stack sx={{justifyContent:'center',alignItems : 'center' }}>
             <LocalLibraryOutlinedIcon sx={{fontSize:'50px',color:'#00008C',marginTop:'5%'}}/>
-            <Typography variant="h2" component="div" sx={{  color: '#00008C',marginBottom:'5%' }}>
-            what is Aiducation?
+            <Typography component="div" sx={{  color: '#00008C',marginBottom:'5%',fontSize:"200%",fontFamily: 'Poppins' }}>
+            C’est quoi  Aiducation ?
             </Typography>
-            <Typography variant="h5" component="div" sx={{  color: '#585860',maxWidth:'40%' }}>    
-            Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore do
-            et dolore magna aliqua. Ut enim ad minim veniam,
-                           quis nostrud exercitation  
+            <Typography  component="div" sx={{  color: '#585860',minWidth:"400px",maxWidth:'40%',fontSize:"150%",fontFamily: 'Poppins' }}>    
+            Aiducation est une application qui aide les enseignant
+         et les élèves de poster, rechercher des cours
+                 de soutien en ligne ou en présentiel  
+
              </Typography>   
 
         </Stack>
