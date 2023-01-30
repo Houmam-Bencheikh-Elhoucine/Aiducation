@@ -2,29 +2,108 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import { Stack } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import logo from '../assets/LOGO.svg';
+import { useMediaQuery } from '@mui/material';
+
+
+const pages = ['À propos', 'Equipe', 'Nous contacter'];
+
+
 export default function NavBar() {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const isMobile = useMediaQuery('(max-width:968px)');
+
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
-    
-      <AppBar >
-        <Toolbar>
+    <AppBar >
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
           
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            LOGO
-          </Typography>
+       {!isMobile && <img src={logo}/>} 
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <img src={logo}   />
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+                
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography  textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+         
           
-          <Stack direction="row" spacing={9} sx={{flexGrow: 1}}>
-          <Button variant='text' color="inherit">About</Button>
-          <Button variant='text' color="inherit">Team</Button>
-          <Button variant='text' color="inherit">Contact Us</Button>
-          </Stack>
-          
-          <Button variant='text' color="inherit">Sign in</Button>
-          
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '25%' }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ mt:2 ,mb:1, color: 'white', display: 'block', marginLeft: '5%',fontFamily:'Poppins' }}
+              
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            
+              
+               <Button sx={{color:'white',fontFamily:'Poppins'}}>S’identifier</Button>
+              
+           
+            
+          </Box>
         </Toolbar>
-      </AppBar>
-   
+      </Container>
+    </AppBar>
   );
 }
