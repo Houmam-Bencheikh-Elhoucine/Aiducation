@@ -11,11 +11,11 @@ export default function StartPage() {
     return (
 
     <div>
-    <NavBar/>
-    <Home/>
-    <About />
-    <JoinUs /> 
-    <Footer/>
+        <NavBar/>
+        <Home/>
+        <About />
+        <JoinUs/> 
+        <Footer/>
     </div>
     
     )   

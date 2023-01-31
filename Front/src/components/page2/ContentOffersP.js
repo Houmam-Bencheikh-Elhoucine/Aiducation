@@ -29,173 +29,71 @@ const Refused = styled(Button)({
 })
 
 
-export default function ContentOffersP() {
+export default function ContentOffersP({data}) {
+
 
   return (
-    
-      <Box>
-      <CardContent 
-      sx={{ backgroundColor : "#F0EFFD",
-        width : "90%", 
-        borderRadius : "18px",
-        marginLeft : "5%",
-        mb : 2,
-        mt : 2,
-      }}
-      >
-        <Typography variant="body2"
-        sx={{
-          color : "#00008C",
-          fontWeight : "bold",
-          fontSize : 16,
-          
-          
-        }}>
-
-
-
-          <CardHeader
-      sx={{  }}
-        avatar={
-          <Avatar sx={{ backgroundColor:"#FF7832"  }} aria-label="recipe">
-            B
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <LocationOnIcon
-            sx={{ color: "#00008C61" }}
-            />
-            bejaia
-          </IconButton>
-        }
-        title="Azouaou Faicel"
+    <Box>
+      {data && data.map((message) => {
         
-        subheader="id user"
-        
-      />
-          Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna 
-        </Typography>
-
-       <Pending variant='contained'
-        size="small"
+        return(
+        <CardContent 
+        sx={{ backgroundColor : "#F0EFFD",
+          width : "90%", 
+          borderRadius : "18px",
+          marginLeft : "5%",
+          mb : 2,
+          mt : 2,
+        }}
         >
-          Pending
-        </Pending>
+          <Typography variant="body2"
+          sx={{
+            color : "#00008C",
+            fontWeight : "bold",
+            fontSize : 16, 
+          }}>
 
-      </CardContent>
 
 
-      <CardContent 
-      sx={{ backgroundColor : "#F0EFFD",
-        width : "90%", 
-        borderRadius : "18px",
-        marginLeft : "5%",
-        mb : 2,
-        mt : 2,
-      }}
-      >
-        <Typography variant="body2"
-        sx={{
-          color : "#00008C",
-          fontWeight : "bold",
-          fontSize : 16,
+            <CardHeader
+        sx={{  }}
+          avatar={
+            <Avatar sx={{ backgroundColor:"#FF7832"  }} aria-label="recipe">
+              {message.sender.firstName[0]}{message.sender.lastName[0]}
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <LocationOnIcon
+              sx={{ color: "#00008C61" }}
+              />
+              {message.announcement.wilaya}
+            </IconButton>
+          }
+          title={message.announcement.user.firstName + message.announcement.user.lastName}
           
+          subheader={message.announcement.user.idUser}
           
-        }}>
+        />
+            {message.announcement.title}
+          </Typography>
+          {message.state===0?
+        <Pending variant='contained'
+          size="small"
+          >
+           En attente 
+          </Pending>:(message.state===1? <Accepted variant='contained'
+          size="small"
+          >
+           Accepté(e) 
+          </Accepted>:<Refused variant='contained'
+          size="small"
+          >
+           Refusé(e) 
+          </Refused>)}
 
-
-
-          <CardHeader
-      sx={{  }}
-        avatar={
-          <Avatar sx={{ backgroundColor:"#FF7832"  }} aria-label="recipe">
-            B
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <LocationOnIcon
-            sx={{ color: "#00008C61" }}
-            />
-            bejaia
-          </IconButton>
-        }
-        title="Azouaou Faicel"
-        
-        subheader="id user"
-        
-      />
-          Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna 
-        </Typography>
-
-       <Accepted variant='contained'
-        size="small"
-        >
-          Accepted
-        </Accepted>
-
-      </CardContent>
-
-
-<CardContent 
-sx={{ backgroundColor : "#F0EFFD",
-  width : "90%", 
-  borderRadius : "18px",
-  marginLeft : "5%",
-  mb : 2,
-  mt : 2,
-}}
->
-  <Typography variant="body2"
-  sx={{
-    color : "#00008C",
-    fontWeight : "bold",
-    fontSize : 16,
-    
-    
-  }}>
-
-
-
-    <CardHeader
-sx={{  }}
-  avatar={
-    <Avatar sx={{ backgroundColor:"#FF7832"  }} aria-label="recipe">
-      B
-    </Avatar>
-  }
-  action={
-    <IconButton aria-label="settings">
-      <LocationOnIcon
-      sx={{ color: "#00008C61" }}
-      />
-      bejaia
-    </IconButton>
-  }
-  title="Azouaou Faicel"
-  
-  subheader="id user"
-  
-/>
-    Lorem ipsum dolor sit amet, consectetur
-    adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et dolore magna 
-  </Typography>
-
- <Refused variant='contained'
-  size="small"
-  >
-      Refused
-  </Refused>
-
-</CardContent>
-
-      
+        </CardContent>)
+    })}
 
 </Box>
  

@@ -23,7 +23,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import { useState, useEffect } from 'react';
 
 
 const drawerWidth = 240;
@@ -138,7 +138,21 @@ const drawerWidth = 240;
   const container = window !== undefined ? () => window().document.body : undefined;
   const isMobile = useMediaQuery('(max-width:968px)');
 
+  useEffect(() => {
+    getUserFavorites()
+  }, [])
 
+  let [userFavorites, setUserFavorites] = useState([])
+  let getUserFavorites = async () =>{
+    console.log("USER FAVORITES");
+    let id = 1;
+    let response = await fetch(`http://127.0.0.1:8000/api/favoriser/?user=${id}`);
+    console.log("USER FAVORITES", response);
+    /*let res = JSON.parse(response)*/
+    let data = await response.json();
+    console.log("USER FAVORITES", data);
+    setUserFavorites(data);
+  }
 
 
   return (
@@ -244,11 +258,9 @@ const drawerWidth = 240;
 
      {/**   cards*/}
       
-      
-          <SavedCard/>
-            <SavedCard/>
-            <SavedCard/>
-            <SavedCard/>
+      {userFavorites && userFavorites.map((favorite) => {
+        return(<SavedCard data={favorite}/>);
+      })}
        
           
 

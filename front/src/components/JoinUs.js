@@ -4,6 +4,7 @@ import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined
 import { FcGoogle } from "react-icons/fc";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
+import { useRef } from "react";
 
 const BlueButton = styled(Button)({
 
@@ -30,11 +31,11 @@ export default function JoinUs() {
             <Stack sx={{justifyContent:'center',alignItems : 'center' }}>
             <PersonAddAlt1OutlinedIcon sx={{fontSize:'50px',color:'#00008C',marginTop:'5%'}}/>
             <Typography component="div" sx={{  color: '#00008C',marginBottom:'5%',fontSize:"200%",fontFamily: 'Poppins' }}>
-            Rejoigner-nous !
+            Rejoignez-nous !
             </Typography>
                 <input type="email" style={{minWidth:'40%', borderRadius: '10px',height:"60px",border:"0",marginBottom:"3%",fontSize:"100%",fontFamily: 'Poppins' }}  placeholder="  Email">
                 </input>
-                <input type="password" style={{minWidth:'40%',borderRadius: '10px',height:"60px",border:"0",marginBottom:"3%",fontSize:"100%",fontFamily: 'Poppins'}} placeholder="  Mots de passe">
+                <input type="password" style={{minWidth:'40%',borderRadius: '10px',height:"60px",border:"0",marginBottom:"3%",fontSize:"100%",fontFamily: 'Poppins'}} placeholder="  Mot de passe">
                 </input>
                 
         <BlueButton sx={{fontFamily: 'Poppins'}}>

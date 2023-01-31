@@ -12,6 +12,7 @@ class PhotoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class AnnouncementSerializer(serializers.ModelSerializer):
+    user = UsersSerializer()
     announcement_photo = serializers.SlugRelatedField(
         many=True,
         read_only = True,
@@ -23,6 +24,8 @@ class AnnouncementSerializer(serializers.ModelSerializer):
 
 
 class MessagesSerializer(serializers.ModelSerializer):
+    sender = UsersSerializer()
+    announcement = AnnouncementSerializer()
     class Meta:
         model = Messages
         fields = '__all__'
@@ -30,6 +33,8 @@ class MessagesSerializer(serializers.ModelSerializer):
 
 
 class FavoriserSerializer(serializers.ModelSerializer):
+    user = UsersSerializer()
+    announcement = AnnouncementSerializer()
     class Meta:
         model = Favoriser
         fields = '__all__'

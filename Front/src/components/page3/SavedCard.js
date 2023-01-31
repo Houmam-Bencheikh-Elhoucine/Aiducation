@@ -26,7 +26,7 @@ const OrangeButton = styled(Button)({
     }
   })
 
-export default function SavedCard() {
+export default function SavedCard({data}) {
     const isMobile = useMediaQuery('(max-width:968px)');
 
   return (
@@ -44,17 +44,13 @@ export default function SavedCard() {
         <CardContent sx={{ flex: '1 0 auto' }}>
         <Box sx={{display : 'flex', flexDirection:'row'}} >         
           <Typography component="div" variant="h5">
-            Azouaou faicel 
+            {data.announcement.user.lastName}
           </Typography>
         <OrangeButton>
             More details
         </OrangeButton>
 
           </Box>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-          Saved on 31/12/2022
-          </Typography>
-
             <Box sx={{
                 backgroundColor : "#F0EFFD",
                 width : "90%", 
@@ -69,9 +65,7 @@ export default function SavedCard() {
             ml : 2,
             pt : 1,
         }}>
-          Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna 
+          {data.announcement.title}
         </Typography>
         </Box>
         </CardContent>
@@ -92,16 +86,13 @@ export default function SavedCard() {
         <CardContent sx={{ flex: '1 0 auto' }}>
         <Box sx={{display : 'flex', flexDirection:'row'}} >         
           <Typography component="div" variant="h5">
-            Azouaou faicel 
+          {data.announcement.user.lastName}
           </Typography>
         <OrangeButton>
             More details
         </OrangeButton>
 
           </Box>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-          Saved on 31/12/2022
-          </Typography>
 
             <Box sx={{
                 backgroundColor : "#F0EFFD",
@@ -117,9 +108,7 @@ export default function SavedCard() {
             ml : 2,
             pt : 1,
         }}>
-          Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna 
+          {data.announcement.title}
         </Typography>
         </Box>
         </CardContent>

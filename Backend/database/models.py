@@ -16,21 +16,28 @@ class Users(models.Model):
     profilePicture = models.ImageField(upload_to="database/images" , default="database/images/default.png")
 
     def __str__(self):
-        return self.firstName, self.lastName, self.profilePicture
+        return self.firstName+" "+self.lastName
 
 
 class Announcements(models.Model):
     idAnnouncement = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255, default="")
-    description = models.CharField(max_length=700, default="")
+    description = models.TextField()
     price = models.IntegerField(default=0)
-    location = models.CharField(max_length=125, default="")
-    user = models.ForeignKey(Users, on_delete= models.CASCADE)
+    wilaya = models.CharField(max_length=125, default="")
+    commune = models.CharField(max_length=125, default="")
+    user = models.ForeignKey(Users, on_delete= models.CASCADE, related_name='Users')
     module = models.CharField(max_length=125, default="")
-    category = models.CharField(max_length=125, default="")
+    CATEGORY_CHOICES = [
+        (0, 'Primaire'),
+        (1, 'Moyenne'),
+        (2, 'Secondaire'),
+        (3, 'Universitaire')
+    ]
+    category = models.IntegerField(choices=CATEGORY_CHOICES)
 
     def __str__(self):
-        return self.title, str(self.module)+''+ str(self.category)
+        return self.title + " " + str(self.module)+" "+ str(self.category)
 
 
 
@@ -39,11 +46,11 @@ class Announcements(models.Model):
 
 class Favoriser(models.Model):
     idFavoriser = models.AutoField(primary_key=True)
-    idUser = models.ForeignKey(Users, on_delete=models.CASCADE)
-    idAnnouncement = models.ForeignKey(Announcements, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    announcement = models.ForeignKey(Announcements, on_delete=models.CASCADE)
     
     class Meta:
-        unique_together = ['idUser', 'idAnnouncement']
+        unique_together = ['user', 'announcement']
 
 
 
@@ -62,7 +69,7 @@ class Messages(models.Model):
     announcement = models.ForeignKey(Announcements, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.idMessage
+        return str(self.idMessage)
 
 class Photos(models.Model):
     idPhoto = models.AutoField(primary_key=True)
@@ -70,10 +77,5 @@ class Photos(models.Model):
     priority = models.IntegerField(default=0)
     announcement = models.ForeignKey(Announcements, on_delete=models.CASCADE, related_name='announcement_photo')
 
-    def __str__(self):
-        with open(self.photo, "rb") as image_file:
-            image_data = base64.b64encode(image_file.read()).decode('utf-8')
-
-        return image_data
 
 

@@ -22,6 +22,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useState, useEffect } from 'react';
 
 
 const drawerWidth = 240;
@@ -135,6 +136,35 @@ const drawerWidth = 240;
 
   const container = window !== undefined ? () => window().document.body : undefined;
   const isMobile = useMediaQuery('(max-width:968px)');
+
+  let [announcements, setAnnouncements] = useState([])
+
+  useEffect(() => {
+    getAnnouncements();
+    getOffers();
+  }, [])
+
+  let getAnnouncements = async () =>{
+    console.log("ANNOUNCEMENTS");
+    let response = await fetch("http://127.0.0.1:8000/api/announcements/");
+    console.log(response);
+    /*let res = JSON.parse(response)*/
+    let data = await response.json();
+    console.log(data);
+    setAnnouncements(data);
+  }
+
+  let [userMessages, setUserMessages] = useState([])
+  let getOffers = async () =>{
+    console.log("USER MESSAGES");
+    let id = 1;
+    let response = await fetch(`http://127.0.0.1:8000/api/messages/?sender=${id}`);
+    console.log("USER MESSAGES", response);
+    /*let res = JSON.parse(response)*/
+    let data = await response.json();
+    console.log("USER MESSAGES", data);
+    setUserMessages(data);
+  }
   return (
     <Box sx={{ display: 'flex',backgroundColor: `#F0EFFD`,height: '100%'
 
@@ -238,14 +268,11 @@ const drawerWidth = 240;
         <Toolbar />
 
      {/**   cards*/}
-      
-      
-
-          <CardsPub />
-          
-          <CardsPub />
-          <CardsPub />
-          <CardsPub />
+      {announcements && announcements.map((announcement) => {
+        return (
+          <CardsPub data={announcement} />
+        )
+      })}
           
 
 
@@ -261,7 +288,7 @@ const drawerWidth = 240;
       
       {!isMobile &&
       
-      <CardOffers />}
+      <CardOffers data={userMessages}/>}
       
         
       </Box>

@@ -4,7 +4,7 @@ from rest_framework.test import APITestCase
 
 # Create your tests here.
 
-class TestCaseAnnouncements(TestCase):
+class TestCaseAnnouncements(APITestCase):
     def createAnnouncementTest(self):
         obj = Announcements.objects.create(
             title = "Cours de soutien d'Anglais",
@@ -18,7 +18,7 @@ class TestCaseAnnouncements(TestCase):
         )
         self.assertEqual(len(Announcements.objects.filter(idAnnouncement = obj.idAnnouncement)), 1)
 
-class TestCaseFavoriser(TestCase):
+class TestCaseFavoriser(APITestCase):
     def favoriserAnnouncementTest(self):
         obj = Favoriser.objects.create(
             idUser = 1,
@@ -26,7 +26,7 @@ class TestCaseFavoriser(TestCase):
         )
         self.assertEqual(len(Favoriser.objects.filter(idFavoriser = obj.idFavoriser)), 1)
 
-class TestCaseMessages(TestCase):
+class TestCaseMessages(APITestCase):
     def deleteMessageTest(self):
         obj = Messages.objects.create(
             sender = 1,
