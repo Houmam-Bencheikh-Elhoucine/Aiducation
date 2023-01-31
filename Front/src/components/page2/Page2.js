@@ -22,6 +22,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from 'react-router-dom';
 
 
 const drawerWidth = 240;
@@ -83,20 +84,21 @@ const drawerWidth = 240;
           backgroundColor: ' #00008CE0'
         }}
       />
-      <Typography>
-        {/**AIDUCATION */}
+      <Link to="/">
+      <Typography px={5} sx={{fontFamily:"Poppins",color:"white",backgroundColor:"#00008CE0",fontSize:"130%"}}>
+            AIDUCATION 
       </Typography>
-      
+      </Link>
       <List 
         sx={{
           color: `white`,
           backgroundColor: ' #00008CE0',
-          height: '91.4vh'
+          height: '87.4vh'
           
         }}
       >
         <Stack direction='row' justifyContent='start' alignItems='center' mb={3} mt={6} >
-        <ListItemButton>
+        <ListItemButton to="/page2">
           <HomeIcon/>
           <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
             Accueil
@@ -104,7 +106,7 @@ const drawerWidth = 240;
           </ListItemButton>
           </Stack>
           <Stack direction='row' justifyContent='start' alignItems='center' mb={3}>
-          <ListItemButton>
+          <ListItemButton to="/page3">
           <BookmarkIcon />
           <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
             Favoris
@@ -112,7 +114,7 @@ const drawerWidth = 240;
           </ListItemButton>
           </Stack>
           <Stack direction='row' justifyContent='start' alignItems='center' mb={3} >
-          <ListItemButton>
+          <ListItemButton to="/page5">
           <PersonIcon/>
           <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
             Profil
@@ -120,7 +122,7 @@ const drawerWidth = 240;
           </ListItemButton>
           </Stack>
           <Stack direction='row' justifyContent='start' alignItems='center' mb={3}>
-          <ListItemButton>
+          <ListItemButton to="/page6">
           <SendIcon/>
           <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
             Messages
@@ -148,6 +150,7 @@ const drawerWidth = 240;
           ml: { sm: `${drawerWidth}px` },
         }}
       >
+        
         <Toolbar
           sx={{
             backgroundColor: `#F0EFFD`,
@@ -202,6 +205,7 @@ const drawerWidth = 240;
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
+        
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
@@ -216,6 +220,7 @@ const drawerWidth = 240;
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
+          
           {drawer}
         </Drawer>
         <Drawer
@@ -229,6 +234,7 @@ const drawerWidth = 240;
           open
         >
           {drawer}
+          
         </Drawer>
       </Box>
       <Box
@@ -241,11 +247,7 @@ const drawerWidth = 240;
       
       
 
-          <CardsPub />
           
-          <CardsPub />
-          <CardsPub />
-          <CardsPub />
           
 
 
@@ -259,9 +261,7 @@ const drawerWidth = 240;
 
      
       
-      {!isMobile &&
       
-      <CardOffers />}
       
         
       </Box>
@@ -270,13 +270,6 @@ const drawerWidth = 240;
   );
 }
 
-Page2.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
 
 
 
