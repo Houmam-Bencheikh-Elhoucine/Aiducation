@@ -1,5 +1,6 @@
 import bgPic from '../assets/backgroundPic.jpg';
 import { Typography , Stack , Button , styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const OrangeButton = styled(Button)({
 
@@ -38,12 +39,14 @@ export default function home() {
        vos notes?
           </Typography>
         <Typography  component="div" sx={{  color: 'white',minWidth:"400px",fontSize:"100%", position: 'absolute', top: '60%', left: '50%',fontFamily: 'Poppins', transform: 'translate(-50%, -50%)'}}>
-        ne perdez plus de temps à chercher où étudier,
-           faites-le facilement ici à Aiducation
+        Ne perdez plus de temps à chercher où étudier,
+           faites-le facilement ici à Aiducation.
           </Typography>
-          <OrangeButton Button sx={{  position: 'absolute', top: '80%', left: '50%', transform: 'translate(-50%, -50%)',fontFamily: 'Poppins'}}>
-          Commencer
-          </OrangeButton >
+          <Link>
+            <OrangeButton Button sx={{  position: 'absolute', top: '80%', left: '50%', transform: 'translate(-50%, -50%)',fontFamily: 'Poppins'}}>
+            Commencer
+            </OrangeButton >
+          </Link>
           </Stack>
         
     </div>

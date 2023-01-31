@@ -35,7 +35,7 @@ export default function ContentOffersP() {
   return (
     
     <Card sx={{ maxWidth: 400, marginBottom:"3%",marginLeft:"10%" }}>
-         <Typography variant="h5" mb={2} ml='18%' mt={2} sx={{color:'#00008C' }} >Demandes envoyees</Typography>
+         <Typography variant="h5" mb={2} ml='18%' mt={2} sx={{color:'#00008C' }} >Demandes envoyées</Typography>
       <CardContent 
       sx={{ backgroundColor : "#F0EFFD",
         width : "90%", 

@@ -18,7 +18,7 @@ export default function About() {
             <Typography  component="div" sx={{  color: '#585860',minWidth:"400px",maxWidth:'40%',fontSize:"150%",fontFamily: 'Poppins' }}>    
             Aiducation est une application qui aide les enseignant
          et les élèves de poster, rechercher des cours
-                 de soutien en ligne ou en présentiel  
+                 de soutien en ligne ou en présentiel.  
 
              </Typography>   
 

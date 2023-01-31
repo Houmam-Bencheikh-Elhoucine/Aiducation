@@ -29,14 +29,71 @@ const Refused = styled(Button)({
 })
 
 
-export default function ContentOffersP() {
+export default function ContentOffersP({data}) {
+
 
   return (
-    
-      <Box>
-      
+    <Box>
+      {data && data.map((message) => {
+        
+        return(
+        <CardContent 
+        sx={{ backgroundColor : "#F0EFFD",
+          width : "90%", 
+          borderRadius : "18px",
+          marginLeft : "5%",
+          mb : 2,
+          mt : 2,
+        }}
+        >
+          <Typography variant="body2"
+          sx={{
+            color : "#00008C",
+            fontWeight : "bold",
+            fontSize : 16, 
+          }}>
 
-      
+
+
+            <CardHeader
+        sx={{  }}
+          avatar={
+            <Avatar sx={{ backgroundColor:"#FF7832"  }} aria-label="recipe">
+              {message.sender.firstName[0]}{message.sender.lastName[0]}
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <LocationOnIcon
+              sx={{ color: "#00008C61" }}
+              />
+              {message.announcement.wilaya}
+            </IconButton>
+          }
+          title={message.announcement.user.firstName + message.announcement.user.lastName}
+          
+          subheader={message.announcement.user.idUser}
+          
+        />
+            {message.announcement.title}
+          </Typography>
+          {message.state===0?
+        <Pending variant='contained'
+          size="small"
+          >
+           En attente 
+          </Pending>:(message.state===1? <Accepted variant='contained'
+          size="small"
+          >
+           Accepté(e) 
+          </Accepted>:<Refused variant='contained'
+          size="small"
+          >
+           Refusé(e) 
+          </Refused>)}
+
+        </CardContent>)
+    })}
 
 </Box>
  

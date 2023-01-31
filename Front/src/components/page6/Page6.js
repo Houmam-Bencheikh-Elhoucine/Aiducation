@@ -23,6 +23,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 
 const drawerWidth = 240;
@@ -138,6 +139,22 @@ const drawerWidth = 240;
 
   const container = window !== undefined ? () => window().document.body : undefined;
   const isMobile = useMediaQuery('(max-width:968px)');
+  useEffect(() => {
+    getUserFavorites()
+  }, [])
+
+  let [userOffers, setUserOffers] = useState([])
+  let getUserOffers = async () =>{
+    console.log("USER OFFERS");
+    let id = 1;
+    let response = await fetch(`http://127.0.0.1:8000/api/messages/?user=${id}`);
+    console.log("USER OFFERS", response);
+    /*let res = JSON.parse(response)*/
+    let data = await response.json();
+    console.log("USER OFFERS", data);
+    setUserFavorites(data);
+  }
+
   return (
     <Box sx={{ display: 'flex',backgroundColor: `#F0EFFD`,height: '100%'
 

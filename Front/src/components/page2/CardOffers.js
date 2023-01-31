@@ -24,7 +24,7 @@ const OrangeButton = styled(Button)({
 })
 
 
-export default function CardOffers() {
+export default function CardOffers({data}) {
 
   return (
   <div>
@@ -33,7 +33,7 @@ export default function CardOffers() {
   }}>Create announce</OrangeButton>
         <Card sx={{ maxWidth: 400, marginBottom:"3%",marginLeft:"10%" }}>
        
-      <ContentOffersP />
+        <ContentOffersP data = {data}/>
       
       
  
