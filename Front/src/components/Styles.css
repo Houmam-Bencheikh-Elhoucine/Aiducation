@@ -1,0 +1,9 @@
+.SwiperUs {
+  background: linear-gradient(180deg, #F0EFFD 0%, rgba(255, 245, 233, 0.645939) 29.2%, #F0EFFD 87.9%);
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}

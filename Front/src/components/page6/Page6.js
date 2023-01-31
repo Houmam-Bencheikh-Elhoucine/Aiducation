@@ -22,6 +22,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 
@@ -84,20 +85,22 @@ const drawerWidth = 240;
           backgroundColor: ' #00008CE0'
         }}
       />
-      <Typography>
-        {/**AIDUCATION */}
+      <Link to="/">
+      <Typography px={5} sx={{fontFamily:"Poppins",color:"white",backgroundColor:"#00008CE0",fontSize:"130%"}}>
+            AIDUCATION 
       </Typography>
+      </Link>
       
       <List 
         sx={{
           color: `white`,
           backgroundColor: ' #00008CE0',
-          height: '91.4vh'
+          height: '87.4vh'
           
         }}
       >
         <Stack direction='row' justifyContent='start' alignItems='center' mb={3} mt={6} >
-        <ListItemButton>
+        <ListItemButton to="/page2">
           <HomeIcon/>
           <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
             Accueil
@@ -105,7 +108,7 @@ const drawerWidth = 240;
           </ListItemButton>
           </Stack>
           <Stack direction='row' justifyContent='start' alignItems='center' mb={3}>
-          <ListItemButton>
+          <ListItemButton to="/page3">
           <BookmarkIcon />
           <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
             Favoris
@@ -113,7 +116,7 @@ const drawerWidth = 240;
           </ListItemButton>
           </Stack>
           <Stack direction='row' justifyContent='start' alignItems='center' mb={3} >
-          <ListItemButton>
+          <ListItemButton to="/page5">
           <PersonIcon/>
           <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
             Profil
@@ -121,7 +124,7 @@ const drawerWidth = 240;
           </ListItemButton>
           </Stack>
           <Stack direction='row' justifyContent='start' alignItems='center' mb={3}>
-          <ListItemButton>
+          <ListItemButton to="/page6">
           <SendIcon/>
           <Typography ml={2} sx={{color:'white',fontFamily:'Poppins',fontSize:'80%'}}>
             Messages

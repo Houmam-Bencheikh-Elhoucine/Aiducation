@@ -7,11 +7,8 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import logo from '../assets/LOGO.svg';
 import { useMediaQuery } from '@mui/material';
 
@@ -82,16 +79,34 @@ export default function NavBar() {
          
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '25%' }}>
-            {pages.map((page) => (
+            
               <Button
-                key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ mt:2 ,mb:1, color: 'white', display: 'block', marginLeft: '5%',fontFamily:'Poppins' }}
+                sx={{ mt:2 ,mb:1, color: 'white', display: 'block' }}
               
               >
-                {page}
+                <Typography  textAlign="center" sx={{fontFamily:"Poppins"}}>À propos</Typography>
+                
               </Button>
-            ))}
+              <Button
+                
+                onClick={handleCloseNavMenu}
+                sx={{ mt:2 ,mb:1, color: 'white', display: 'block', marginLeft: '5%' }}
+              
+              >
+                <Typography  textAlign="center" sx={{fontFamily:"Poppins"}}>Équipe</Typography>
+                
+              </Button>
+              <Button
+                
+                onClick={handleCloseNavMenu}
+                sx={{ mt:2 ,mb:1, color: 'white', display: 'block', marginLeft: '5%' }}
+              
+              >
+                <Typography  textAlign="center" sx={{fontFamily:"Poppins"}}>Nous contacter</Typography>
+                
+              </Button>
+            
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

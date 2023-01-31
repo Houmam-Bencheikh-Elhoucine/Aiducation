@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import ContentOffersP from './ContentOffersP'
 import Button from '@mui/material/Button';
 import styled from '@emotion/styled'
+import { ListItemButton } from '@mui/material';
 
 
 const OrangeButton = styled(Button)({
@@ -27,7 +28,9 @@ export default function CardOffers({data}) {
 
   return (
   <div>
-        <OrangeButton>Create announce</OrangeButton>
+        <OrangeButton onClick={() => {
+    window.location.href="/page4";
+  }}>Create announce</OrangeButton>
         <Card sx={{ maxWidth: 400, marginBottom:"3%",marginLeft:"10%" }}>
        
         <ContentOffersP data = {data}/>

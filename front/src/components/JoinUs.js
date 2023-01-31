@@ -26,7 +26,7 @@ const BlueButton = styled(Button)({
 export default function JoinUs() {
     return (
         <Box sx={{
-            background: 'linear-gradient(180deg, #FFF5E9 0%, rgba(255, 245, 233, 0.645939) 35.41%, #F0EFFD 87.9%);'
+            background: 'linear-gradient(180deg, #F0EFFD 0%, #F0EFFD 40.62%, #FFF5E9 100%);'
         }} >
             <Stack sx={{justifyContent:'center',alignItems : 'center' }}>
             <PersonAddAlt1OutlinedIcon sx={{fontSize:'50px',color:'#00008C',marginTop:'5%'}}/>
